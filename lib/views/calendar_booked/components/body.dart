@@ -1,7 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:nail_artists_hub/views/nail_salons/nail_salons_page.dart';
+
+import 'package:nail_artists_hub/views/tabs/tabs_page.dart';
 
 class Body extends StatelessWidget {
   const Body({super.key});
@@ -10,7 +10,7 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 5), () {
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => const NailSalonPage(),
+        builder: (context) => const TabsPage(),
       ));
     });
 

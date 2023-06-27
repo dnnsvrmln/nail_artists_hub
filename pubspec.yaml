@@ -38,6 +38,11 @@ dependencies:
   booking_calendar: ^1.1.9
   transparent_image: ^2.0.1
   intl: ^0.17.0
+  http: ^1.0.0
+  firebase_auth: ^4.6.3
+  cloud_firestore: ^4.8.1
+  firebase_core: ^2.14.0
+  logger: ^1.4.0
 
 dev_dependencies:
   flutter_test:

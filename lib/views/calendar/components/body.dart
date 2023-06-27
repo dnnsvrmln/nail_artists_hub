@@ -1,16 +1,31 @@
 import 'package:flutter/material.dart';
 
 import 'package:booking_calendar/booking_calendar.dart';
+
+import 'package:nail_artists_hub/commons/logger.dart';
+import 'package:nail_artists_hub/models/appointment.dart';
+import 'package:nail_artists_hub/services/firebase_service.dart';
 import 'package:nail_artists_hub/views/calendar_booked/calendar_booked_page.dart';
 
 class Body extends StatefulWidget {
-  const Body({super.key});
+  final String customerId;
+  final String nailSalonId;
+  final String treatmentId;
+
+  const Body({
+    super.key,
+    required this.customerId,
+    required this.nailSalonId,
+    required this.treatmentId,
+  });
 
   @override
   State<StatefulWidget> createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
+  static final _commonsLogger = CommonsLogger(loggerClass: 'CalendarPageBody');
+
   final now = DateTime.now();
   late BookingService mockBookingService;
 
@@ -26,16 +41,6 @@ class _BodyState extends State<Body> {
         bookingStart: DateTime(now.year, now.month, now.day, 8, 0));
   }
 
-  void _showSnackBarMessage(String message) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) => const CalendarBookedPage(),
-    ));
-  }
-
   Stream<dynamic>? getBookingStreamMock(
       {required DateTime end, required DateTime start}) {
     return Stream.value([]);
@@ -46,9 +51,26 @@ class _BodyState extends State<Body> {
     await Future.delayed(const Duration(seconds: 1));
     converted.add(DateTimeRange(
         start: newBooking.bookingStart, end: newBooking.bookingEnd));
-    print('${newBooking.toJson()} has been uploaded');
 
-    _showSnackBarMessage('Je boeking is geslaagd!');
+    var newAppointment = Appointment(
+        customerId: widget.customerId,
+        nailSalonId: widget.nailSalonId,
+        treatmentId: widget.treatmentId,
+        dateAndTime: now);
+
+    await FirebaseService().addAppointment(newAppointment.toJson());
+
+    _commonsLogger.logInfo('BEGIN Calendar Page /POST');
+    _commonsLogger.logInfo('${newAppointment.toJson()} has been uploaded');
+    _commonsLogger.logInfo('END Calendar Page /POST');
+
+    if (!context.mounted) {
+      return;
+    }
+
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+      builder: (context) => const CalendarBookedPage(),
+    ));
   }
 
   List<DateTimeRange> converted = [];

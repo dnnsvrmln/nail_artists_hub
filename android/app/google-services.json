@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "358911552570",
+    "firebase_url": "https://nail-artists-hub-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "nail-artists-hub",
+    "storage_bucket": "nail-artists-hub.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358911552570:android:69aa92dd3ffb7a90d05903",
+        "android_client_info": {
+          "package_name": "com.example.nail_artists_hub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358911552570-jlbeh0tdosh20h8tjifc7jj9ov3vounl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBU9_ncs4QnQJ6936lXpGtOIPy0eYQC_MQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358911552570-jlbeh0tdosh20h8tjifc7jj9ov3vounl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,45 +1,135 @@
-import 'package:flutter/material.dart';
-
+import 'package:nail_artists_hub/models/customer.dart';
 import 'package:nail_artists_hub/models/nail_salon.dart';
 import 'package:nail_artists_hub/models/treatment.dart';
 
-const nailSalonData = [
+final _now = DateTime.now();
+
+final nailSalonData = [
   NailSalon(
     id: 'NS1',
-    companyName: 'Nails by Dennis1',
-    color: Colors.purple,
+    companyName: 'Nails by Nail Artist',
+    firstName: 'Nail',
+    lastName: 'Artist',
+    email: 'info@nailsbynailartist-ns1.com',
+    phoneNumber: '0612345678 - NS1',
+    adress: 'Streetname 123 - NS1',
+    workdayStartTime: DateTime(_now.year, _now.month, _now.day, 8, 30),
+    workdayEndTime: DateTime(_now.year, _now.month, _now.day, 17, 30),
+    lunchStartTime: DateTime(_now.year, _now.month, _now.day, 12, 0),
+    lunchEndtime: DateTime(_now.year, _now.month, _now.day, 13, 0),
+    planDaysAhead: 30,
   ),
   NailSalon(
     id: 'NS2',
-    companyName: 'Nails by Dennis2',
-    color: Colors.purple,
+    companyName: 'Nails by Nail Artist',
+    firstName: 'Nail',
+    lastName: 'Artist',
+    email: 'info@nailsbynailartist-ns2.com',
+    phoneNumber: '0612345678 - NS2',
+    adress: 'Streetname 123 - NS2',
+    workdayStartTime: DateTime(_now.year, _now.month, _now.day, 8, 30),
+    workdayEndTime: DateTime(_now.year, _now.month, _now.day, 17, 30),
+    lunchStartTime: DateTime(_now.year, _now.month, _now.day, 12, 0),
+    lunchEndtime: DateTime(_now.year, _now.month, _now.day, 13, 0),
+    planDaysAhead: 30,
   ),
   NailSalon(
     id: 'NS3',
-    companyName: 'Nails by Dennis3',
-    color: Colors.purpleAccent,
+    companyName: 'Nails by Nail Artist',
+    firstName: 'Nail',
+    lastName: 'Artist',
+    email: 'info@nailsbynailartist-ns3.com',
+    phoneNumber: '0612345678 - NS3',
+    adress: 'Streetname 123 - NS3',
+    workdayStartTime: DateTime(_now.year, _now.month, _now.day, 8, 30),
+    workdayEndTime: DateTime(_now.year, _now.month, _now.day, 17, 30),
+    lunchStartTime: DateTime(_now.year, _now.month, _now.day, 12, 0),
+    lunchEndtime: DateTime(_now.year, _now.month, _now.day, 13, 0),
+    planDaysAhead: 30,
   ),
   NailSalon(
     id: 'NS4',
-    companyName: 'Nails by Dennis4',
-    color: Colors.purpleAccent,
+    companyName: 'Nails by Nail Artist',
+    firstName: 'Nail',
+    lastName: 'Artist',
+    email: 'info@nailsbynailartist-ns4.com',
+    phoneNumber: '0612345678 - NS4',
+    adress: 'Streetname 123 - NS4',
+    workdayStartTime: DateTime(_now.year, _now.month, _now.day, 8, 30),
+    workdayEndTime: DateTime(_now.year, _now.month, _now.day, 17, 30),
+    lunchStartTime: DateTime(_now.year, _now.month, _now.day, 12, 0),
+    lunchEndtime: DateTime(_now.year, _now.month, _now.day, 13, 0),
+    planDaysAhead: 30,
   ),
   NailSalon(
     id: 'NS5',
-    companyName: 'Nails by Dennis5',
-    color: Colors.purple,
+    companyName: 'Nails by Nail Artist',
+    firstName: 'Nail',
+    lastName: 'Artist',
+    email: 'info@nailsbynailartist-ns5.com',
+    phoneNumber: '0612345678 - NS5',
+    adress: 'Streetname 123 - NS5',
+    workdayStartTime: DateTime(_now.year, _now.month, _now.day, 8, 30),
+    workdayEndTime: DateTime(_now.year, _now.month, _now.day, 17, 30),
+    lunchStartTime: DateTime(_now.year, _now.month, _now.day, 12, 0),
+    lunchEndtime: DateTime(_now.year, _now.month, _now.day, 13, 0),
+    planDaysAhead: 30,
   ),
   NailSalon(
     id: 'NS6',
-    companyName: 'Nails by Dennis6',
-    color: Colors.purple,
+    companyName: 'Nails by Nail Artist',
+    firstName: 'Nail',
+    lastName: 'Artist',
+    email: 'info@nailsbynailartist-ns6.com',
+    phoneNumber: '0612345678 - NS6',
+    adress: 'Streetname 123 - NS6',
+    workdayStartTime: DateTime(_now.year, _now.month, _now.day, 8, 30),
+    workdayEndTime: DateTime(_now.year, _now.month, _now.day, 17, 30),
+    lunchStartTime: DateTime(_now.year, _now.month, _now.day, 12, 0),
+    lunchEndtime: DateTime(_now.year, _now.month, _now.day, 13, 0),
+    planDaysAhead: 30,
+  ),
+];
+
+const customerData = [
+  Customer(
+    id: 'C1',
+    firstName: 'Customer',
+    insertion: '',
+    lastName: 'Client',
+    email: 'customer-c1@email.com',
+    phoneNumber: '0612345678 - C1',
+  ),
+  Customer(
+    id: 'C2',
+    firstName: 'Customer',
+    insertion: '',
+    lastName: 'Client',
+    email: 'customer-c2@email.com',
+    phoneNumber: '0612345678 - C2',
+  ),
+  Customer(
+    id: 'C3',
+    firstName: 'Customer',
+    insertion: '',
+    lastName: 'Client',
+    email: 'customer-c3@email.com',
+    phoneNumber: '0612345678 - C3',
+  ),
+  Customer(
+    id: 'C4',
+    firstName: 'Customer',
+    insertion: '',
+    lastName: 'Client',
+    email: 'customer-c4@email.com',
+    phoneNumber: '0612345678 - C4',
   ),
 ];
 
 const treatmentData = [
   Treatment(
     id: 'T1',
-    salonId: 'NS1',
+    nailSalonId: 'NS1',
     name: 'Acryl Nagels',
     description: 'Nieuwe set',
     price: 55,
@@ -47,7 +137,7 @@ const treatmentData = [
   ),
   Treatment(
     id: 'T2',
-    salonId: 'NS1',
+    nailSalonId: 'NS1',
     name: 'Acryl Nagels',
     description: 'Babyboom',
     price: 60,
@@ -55,7 +145,7 @@ const treatmentData = [
   ),
   Treatment(
     id: 'T3',
-    salonId: 'NS1',
+    nailSalonId: 'NS1',
     name: 'Acryl Nagels',
     description: 'French',
     price: 60,
@@ -63,7 +153,7 @@ const treatmentData = [
   ),
   Treatment(
     id: 'T4',
-    salonId: 'NS1',
+    nailSalonId: 'NS1',
     name: 'Acryl Nagels',
     description: 'Verwijderen',
     price: 15,
@@ -71,7 +161,7 @@ const treatmentData = [
   ),
   Treatment(
     id: 'T5',
-    salonId: 'NS1',
+    nailSalonId: 'NS1',
     name: 'Manicure',
     description: 'Blanke lak',
     price: 20,
@@ -79,7 +169,7 @@ const treatmentData = [
   ),
   Treatment(
     id: 'T6',
-    salonId: 'NS1',
+    nailSalonId: 'NS1',
     name: 'Manicure',
     description: 'Kleur lak',
     price: 25,
@@ -87,7 +177,7 @@ const treatmentData = [
   ),
   Treatment(
     id: 'T7',
-    salonId: 'NS1',
+    nailSalonId: 'NS1',
     name: 'Manicure',
     description: 'Bijwerken',
     price: 25,
@@ -95,7 +185,7 @@ const treatmentData = [
   ),
   Treatment(
     id: 'T8',
-    salonId: 'NS2',
+    nailSalonId: 'NS2',
     name: 'Acryl Nagels',
     description: 'Nieuwe set',
     price: 55,
@@ -103,7 +193,7 @@ const treatmentData = [
   ),
   Treatment(
     id: 'T9',
-    salonId: 'NS2',
+    nailSalonId: 'NS2',
     name: 'Acryl Nagels',
     description: 'Babyboom',
     price: 60,
@@ -111,7 +201,7 @@ const treatmentData = [
   ),
   Treatment(
     id: 'T10',
-    salonId: 'NS2',
+    nailSalonId: 'NS2',
     name: 'Acryl Nagels',
     description: 'French',
     price: 60,
@@ -119,7 +209,7 @@ const treatmentData = [
   ),
   Treatment(
     id: 'T11',
-    salonId: 'NS2',
+    nailSalonId: 'NS2',
     name: 'Acryl Nagels',
     description: 'Verwijderen',
     price: 15,

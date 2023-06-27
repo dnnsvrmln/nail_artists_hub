@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>358911552570-ee47pcc2rc8j4lvsmq8e7filcr6gaptf.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.358911552570-ee47pcc2rc8j4lvsmq8e7filcr6gaptf</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA9_L2qrsoHAuRpq057LM812gg7GYih_6o</string>
+	<key>GCM_SENDER_ID</key>
+	<string>358911552570</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.nailArtistsHub</string>
+	<key>PROJECT_ID</key>
+	<string>nail-artists-hub</string>
+	<key>STORAGE_BUCKET</key>
+	<string>nail-artists-hub.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:358911552570:ios:772af844052be606d05903</string>
+	<key>DATABASE_URL</key>
+	<string>https://nail-artists-hub-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>

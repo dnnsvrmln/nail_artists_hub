@@ -1,10 +1,17 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-import 'package:nail_artists_hub/views/nail_salons/nail_salons_page.dart';
+import 'firebase_options.dart';
+import 'package:nail_artists_hub/views/tabs/tabs_page.dart';
 
-void main() {
+Future<void> main() async {
   initializeDateFormatting().then((_) => runApp(const MyApp()));
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -17,7 +24,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const NailSalonPage(),
+      // home: const NailSalonPage(),
+      home: const TabsPage(),
     );
   }
 }

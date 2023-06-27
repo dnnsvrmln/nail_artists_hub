@@ -24,8 +24,8 @@ class Body extends StatelessWidget {
           borderRadius: BorderRadius.circular(20.0),
           gradient: LinearGradient(
             colors: [
-              nailSalon.color.withOpacity(0.55),
-              nailSalon.color.withOpacity(0.9),
+              Colors.pink.withOpacity(0.55),
+              Colors.pink.withOpacity(0.9),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
