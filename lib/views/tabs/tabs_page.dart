@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nail_artists_hub/shared/base_app_bar.dart';
+import 'package:nail_artists_hub/shared/constants.dart';
 import 'package:nail_artists_hub/views/register/register_page.dart';
 import 'package:nail_artists_hub/views/sign_in/sign_in_page.dart';
 import 'package:nail_artists_hub/views/nail_salons/nail_salons_page.dart';
@@ -44,20 +46,27 @@ class _TabsPageState extends State<TabsPage> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(activePageTitle),
+      appBar: BaseAppBar(
+        title: activePageTitle,
       ),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: appBackgroundColor,
+        selectedItemColor: appTextgroundColor,
+        unselectedItemColor: appTextgroundColor,
         onTap: _selectPage,
         currentIndex: _selectedPageIndex,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(
+              Icons.home,
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(
+              Icons.person,
+            ),
             label: 'Profiel',
           ),
         ],

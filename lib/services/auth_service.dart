@@ -1,17 +1,35 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:nail_artists_hub/commons/logger.dart';
+import 'package:nail_artists_hub/shared/logger.dart';
 
 class AuthService {
-  static final _commonsLogger = CommonsLogger(loggerClass: 'AuthService');
+  static final _logger = Logger(loggerClass: 'AuthService');
   static final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  Future signInAnonymous() async {
+  Stream<User?> get user {
+    return _firebaseAuth.authStateChanges();
+  }
+
+  Future registerWithEmailAndPassword(String email, String password) async {
     try {
-      var result = await _firebaseAuth.signInAnonymously();
-      return result.user;
+      return await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
     } catch (e) {
-      _commonsLogger.logError(e.toString());
+      _logger.logError(e.toString());
+      return null;
+    }
+  }
+
+  Future signInWithEmailAndPassWord(String email, String password) async {
+    try {
+      return await _firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } catch (e) {
+      _logger.logError(e.toString());
       return;
     }
   }

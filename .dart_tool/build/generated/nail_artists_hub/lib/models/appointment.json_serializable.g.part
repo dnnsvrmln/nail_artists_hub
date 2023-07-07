@@ -1,0 +1,22 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+Appointment _$AppointmentFromJson(Map<String, dynamic> json) => Appointment(
+      customerId: json['customerId'] as String,
+      nailSalonId: json['nailSalonId'] as String,
+      treatmentId: json['treatmentId'] as String,
+      bookingStart:
+          Appointment.timeStampToDateTime(json['bookingStart'] as Timestamp),
+      bookingEnd:
+          Appointment.timeStampToDateTime(json['bookingEnd'] as Timestamp),
+    );
+
+Map<String, dynamic> _$AppointmentToJson(Appointment instance) =>
+    <String, dynamic>{
+      'customerId': instance.customerId,
+      'nailSalonId': instance.nailSalonId,
+      'treatmentId': instance.treatmentId,
+      'bookingStart': Appointment.dateTimeToTimeStamp(instance.bookingStart),
+      'bookingEnd': Appointment.dateTimeToTimeStamp(instance.bookingEnd),
+    };

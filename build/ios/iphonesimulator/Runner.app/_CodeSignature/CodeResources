@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		PPBceQrXUm5KO4R/nnT0sAzerI4=
+		Qt2VKyYZmjdxeyGY9v30UesARzo=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		og2nbQQ8JAp9dYVaTnmcTzPyyrU=
+		OoLC4r1kp+4ZPG589Bjb1CKIrRo=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
@@ -70,7 +70,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		sAGKMcYQu4YAlhqlpajZKwsjK4Y=
+		9m3xlvEY88FkTyIJ/4qWaaKky00=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
@@ -82,11 +82,11 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		I4cEL4/n8t5lYNJ+zOF1Ov2xzQA=
+		fwBst76G1zLFprJF3oWLuMXoHko=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/lib/assets/data/dummy_data.dart</key>
 		<data>
-		AQmUb0Zh5HC7AM14nSZsQNJE0LY=
+		nfMqzmx+gy7q3WmMCEFDyyabEjE=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/lib/assets/images/acrylic_nails.jpg</key>
 		<data>
@@ -457,7 +457,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			mozgtPxYxIOP3rVm2ScbWHS7s4mr+bsZbotirtC7ruk=
+			uhOQhbSBAgvHSS0QdsTrkonG+muCFILvRZHRVnquUoM=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -471,7 +471,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			k5n9bnemhUMhRJKU/mps+c9sUgdomKaZ91+itgXgrgQ=
+			XfNSPHmKTB5jmxM73Rn11D9/LenpNNMYVdrRxfvyWFU=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
@@ -499,7 +499,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			pcybv9GdlspV4XrOUwqSy0gH2ujiLgJPZbZ3qFoH5ls=
+			0V2Wc9CFZSSjFcvxnvy4DI6yR3Z7PJGTQudIn3rbZL8=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
@@ -520,14 +520,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			oghUUpOybXmGi1cqcTZstZ4qpxlAWV42BLHbYsvivPw=
+			aW05pKogwt6cQucx7GgaVFELj4go73hNMdRWX1ZsOz8=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/lib/assets/data/dummy_data.dart</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Km657bb6lKvpgHRU0xE55R12YTh10FHhcmDehJkTMoE=
+			U7IY+jxXgnvXUPbFInOBl220pWe3PIYtLpRXpMmGaPg=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/lib/assets/images/acrylic_nails.jpg</key>

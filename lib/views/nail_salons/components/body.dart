@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:nail_artists_hub/models/nail_salon.dart';
+import 'package:nail_artists_hub/shared/constants.dart';
 
 class Body extends StatelessWidget {
   final NailSalon nailSalon;
@@ -22,16 +23,17 @@ class Body extends StatelessWidget {
         padding: const EdgeInsets.all(6),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.0),
-          gradient: LinearGradient(
-            colors: [
-              Colors.pink.withOpacity(0.55),
-              Colors.pink.withOpacity(0.9),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+          color: appAccentColor,
+        ),
+        child: Align(
+          alignment: Alignment.center,
+          child: Text(
+            nailSalon.companyName,
+            style: const TextStyle(
+              color: Colors.white,
+            ),
           ),
         ),
-        child: Text(nailSalon.id),
       ),
     );
   }

@@ -1,21 +1,25 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:booking_calendar/booking_calendar.dart';
-
-import 'package:nail_artists_hub/commons/logger.dart';
 import 'package:nail_artists_hub/models/appointment.dart';
+import 'package:nail_artists_hub/models/nail_salon.dart';
 import 'package:nail_artists_hub/services/firebase_service.dart';
+import 'package:nail_artists_hub/shared/constants.dart';
+import 'package:nail_artists_hub/shared/loading_spinner.dart';
+
+import 'package:nail_artists_hub/shared/logger.dart';
 import 'package:nail_artists_hub/views/calendar_booked/calendar_booked_page.dart';
 
 class Body extends StatefulWidget {
   final String customerId;
-  final String nailSalonId;
+  final NailSalon nailSalon;
   final String treatmentId;
 
   const Body({
     super.key,
     required this.customerId,
-    required this.nailSalonId,
+    required this.nailSalon,
     required this.treatmentId,
   });
 
@@ -24,68 +28,63 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  static final _commonsLogger = CommonsLogger(loggerClass: 'CalendarPageBody');
+  static final _logger = Logger(loggerClass: 'CalendarPageBody');
+  static final _now = DateTime.now();
 
-  final now = DateTime.now();
-  late BookingService mockBookingService;
+  late BookingService bookingService;
+
+  void _showSnackbar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          message,
+          style: const TextStyle(color: Colors.white),
+        ),
+        backgroundColor: appSubTextgroundColor,
+      ),
+    );
+  }
+
+  void _showSnackbarSuccess(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          message,
+          style: const TextStyle(color: Colors.white),
+        ),
+        backgroundColor: appAccentColor,
+      ),
+    );
+  }
 
   @override
   void initState() {
     super.initState();
-    // DateTime.now().startOfDay
-    // DateTime.now().endOfDay
-    mockBookingService = BookingService(
-        serviceName: 'Mock Service',
-        serviceDuration: 30,
-        bookingEnd: DateTime(now.year, now.month, now.day, 18, 0),
-        bookingStart: DateTime(now.year, now.month, now.day, 8, 0));
+    bookingService = BookingService(
+      serviceName: 'Nail Artists Hub',
+      serviceDuration: 30,
+      bookingEnd: widget.nailSalon.workdayEndTime,
+      bookingStart: widget.nailSalon.workdayStartTime,
+    );
   }
 
-  Stream<dynamic>? getBookingStreamMock(
+  Stream<dynamic>? getBookingStreamFirebase(
       {required DateTime end, required DateTime start}) {
     return Stream.value([]);
   }
 
-  Future<dynamic> uploadBookingMock(
-      {required BookingService newBooking}) async {
-    await Future.delayed(const Duration(seconds: 1));
-    converted.add(DateTimeRange(
-        start: newBooking.bookingStart, end: newBooking.bookingEnd));
-
-    var newAppointment = Appointment(
-        customerId: widget.customerId,
-        nailSalonId: widget.nailSalonId,
-        treatmentId: widget.treatmentId,
-        dateAndTime: now);
-
-    await FirebaseService().addAppointment(newAppointment.toJson());
-
-    _commonsLogger.logInfo('BEGIN Calendar Page /POST');
-    _commonsLogger.logInfo('${newAppointment.toJson()} has been uploaded');
-    _commonsLogger.logInfo('END Calendar Page /POST');
-
-    if (!context.mounted) {
-      return;
-    }
-
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) => const CalendarBookedPage(),
-    ));
-  }
-
   List<DateTimeRange> converted = [];
 
-  List<DateTimeRange> convertStreamResultMock({required dynamic streamResult}) {
-    ///here you can parse the streamresult and convert to [List<DateTimeRange>]
-    ///take care this is only mock, so if you add today as disabledDays it will still be visible on the first load
-    ///disabledDays will properly work with real data
-    DateTime first = now;
-    DateTime tomorrow = now.add(const Duration(days: 1));
-    DateTime second = now.add(const Duration(minutes: 55));
-    DateTime third = now.subtract(const Duration(minutes: 240));
-    DateTime fourth = now.subtract(const Duration(minutes: 500));
-    converted.add(
-        DateTimeRange(start: first, end: now.add(const Duration(minutes: 30))));
+  List<DateTimeRange> convertStreamResultFirebase(
+      {required dynamic streamResult}) {
+    DateTime first = _now;
+    DateTime tomorrow = _now.add(Duration(days: 1));
+    DateTime second = _now.add(const Duration(minutes: 55));
+    DateTime third = _now.subtract(const Duration(minutes: 240));
+    DateTime fourth = _now.subtract(const Duration(minutes: 500));
+
+    converted.add(DateTimeRange(
+        start: first, end: _now.add(const Duration(minutes: 30))));
     converted.add(DateTimeRange(
         start: second, end: second.add(const Duration(minutes: 23))));
     converted.add(DateTimeRange(
@@ -100,11 +99,38 @@ class _BodyState extends State<Body> {
     return converted;
   }
 
+  Future<dynamic> uploadBookingFirebase(
+      {required BookingService newBooking}) async {
+    await Future.delayed(const Duration(seconds: 1));
+    converted.add(DateTimeRange(
+        start: newBooking.bookingStart, end: newBooking.bookingEnd));
+
+    var appointment = Appointment(
+        customerId: widget.customerId,
+        nailSalonId: widget.nailSalon.id,
+        treatmentId: widget.treatmentId,
+        bookingStart: newBooking.bookingStart,
+        bookingEnd: newBooking.bookingEnd);
+
+    var result =
+        await FirebaseService().addAppointment(appointment.toFirestore());
+
+    if (result) {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const CalendarBookedPage()));
+
+      _showSnackbarSuccess('Afspraak is geboekt!');
+    } else {
+      _logger.logError('Add treatment failed');
+      _showSnackbar('Afspraak is niet geboekt!');
+    }
+  }
+
   List<DateTimeRange> generatePauseSlots() {
     return [
       DateTimeRange(
-          start: DateTime(now.year, now.month, now.day, 12, 0),
-          end: DateTime(now.year, now.month, now.day, 13, 0))
+          start: widget.nailSalon.lunchStartTime,
+          end: widget.nailSalon.lunchEndtime)
     ];
   }
 
@@ -114,21 +140,34 @@ class _BodyState extends State<Body> {
       margin: const EdgeInsets.only(bottom: 15.0),
       child: Center(
         child: BookingCalendar(
-          bookingService: mockBookingService,
-          convertStreamResultToDateTimeRanges: convertStreamResultMock,
-          getBookingStream: getBookingStreamMock,
-          uploadBooking: uploadBookingMock,
+          // Required parameters
+          bookingService: bookingService,
+          convertStreamResultToDateTimeRanges: convertStreamResultFirebase,
+          getBookingStream: getBookingStreamFirebase,
+          uploadBooking: uploadBookingFirebase,
+          // convertStreamResultToDateTimeRanges: convertStreamResult,
+          // getBookingStream: getBookingStream2,
+          // uploadBooking: uploadBooking,
+          // Optional parameters
+          bookingButtonColor: appAccentColor,
+          bookingButtonText: 'Boek afspraak',
+          bookedSlotColor: appSubTextgroundColor,
+          bookedSlotText: 'Geboekt',
+          selectedSlotColor: appTextgroundColor,
+          selectedSlotText: 'Gekozen',
+          availableSlotColor: appAccentColor,
+          availableSlotText: 'Beschikbaar',
           pauseSlots: generatePauseSlots(),
-          pauseSlotText: 'LUNCH',
+          pauseSlotText: 'Pauze',
           hideBreakTime: false,
-          loadingWidget: const Text('Kalender laden..'),
-          uploadingWidget: const CircularProgressIndicator(),
+          loadingWidget: const LoadingSpinner(),
+          uploadingWidget: const LoadingSpinner(),
           locale: 'nl_NL',
-          startingDayOfWeek: StartingDayOfWeek.tuesday,
-          wholeDayIsBookedWidget:
-              const Text('Sorry, alles is volgeboekt voor deze dag!'),
-          //disabledDates: [DateTime(2023, 1, 20)],
-          //disabledDays: [6, 7],
+          startingDayOfWeek: StartingDayOfWeek.monday,
+          wholeDayIsBookedWidget: const Text(
+            'Sorry, alles is volgeboekt voor deze dag!',
+            style: TextStyle(color: appSubTextgroundColor),
+          ),
         ),
       ),
     );

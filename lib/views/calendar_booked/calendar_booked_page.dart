@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nail_artists_hub/shared/base_app_bar.dart';
 
 import 'package:nail_artists_hub/views/calendar_booked/components/body.dart';
 
@@ -7,13 +8,9 @@ class CalendarBookedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-            // '${treatment.name} - ${treatment.description}',
-            'Just a title'),
-      ),
-      body: const Body(),
+    return const Scaffold(
+      appBar: BaseAppBar(title: 'Bedankt voor uw boeking!'),
+      body: Body(),
     );
   }
 }
